@@ -15,8 +15,6 @@ import {baseUrl, apiKey} from '../constants/constants'
 const sectionsMiddleware = ({dispatch, getState}) => next => action => {
   next(action)
 
-  const state = getState()
-
   switch (action.type) {
     case sectionTypes.FETCH_SECTIONS:
       const endpoint = action.payload.sections
@@ -24,16 +22,20 @@ const sectionsMiddleware = ({dispatch, getState}) => next => action => {
       dispatch(apiActions.apiRequest({
         url: `${baseUrl}${endpoint}${apiKey}`,
         method: 'GET',
-        successAction: sectionActions.setSection
+        successFn: res => {
+          dispatch(sectionActions.setSection(res))
+
+          const state = getState()
+
+          dispatch(sectionActions.setMinSectionYear(
+            Math.min(...select.selectYearsFromSections(state.sections.sections))
+          ))
+
+          dispatch(sectionActions.setMaxSectionYear(
+            Math.max(...select.selectYearsFromSections(state.sections.sections))
+          ))
+        }
       }))
-
-      dispatch(sectionActions.setMinSectionYear(
-        Math.min(...select.selectYearsFromSections(state.sections.sections))
-      ))
-
-      dispatch(sectionActions.setMaxSectionYear(
-        Math.max(...select.selectYearsFromSections(state.sections.sections))
-      ))
       break
   }
 }

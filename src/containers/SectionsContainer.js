@@ -3,9 +3,18 @@ import Sections from '../components/Sections'
 
 import {actions} from '../reducers/sectionsReducer'
 
+import {select} from '../reducers/filterReducer'
+
+import getDateElsFromTimestamp from '../helpers/getDateElsFromTimestamp'
+import compose from '../helpers/compose'
+
 const mapState = state => {
+  const filterSectionsMinYearSet = select.filterSectionsByMinYear(state.filter.minYear)
+
+  const applyFilterFns = compose(filterSectionsMinYearSet)
+
   return {
-  	sections: state.sections.sections
+  	sections: applyFilterFns(state.sections.sections)
   }
 }
 
