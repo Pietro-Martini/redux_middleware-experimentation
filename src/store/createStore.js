@@ -6,11 +6,13 @@ import filterReducer from '../reducers/filterReducer'
 import apiMiddleware from '../middleware/apiMiddleware'
 import sectionsMiddleware from '../middleware/sectionsMiddleware'
 import errorMiddleware from '../middleware/errorMiddleware'
+import uiMiddleware from '../middleware/uiMiddleware'
 
 import {createStore, combineReducers, applyMiddleware} from 'redux'
 
 const createStoreMiddleware = applyMiddleware(
-  apiMiddleware, errorMiddleware, sectionsMiddleware
+  apiMiddleware, errorMiddleware, sectionsMiddleware,
+  uiMiddleware
 )(createStore)
 
 const store = createStoreMiddleware(

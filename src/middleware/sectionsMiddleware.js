@@ -16,7 +16,7 @@ const sectionsMiddleware = ({dispatch, getState}) => next => action => {
   next(action)
 
   switch (action.type) {
-    case sectionTypes.FETCH_SECTIONS:
+    case sectionTypes.FETCHAPI_SECTIONS:
       const endpoint = action.payload.sections
 
       dispatch(apiActions.apiRequest({

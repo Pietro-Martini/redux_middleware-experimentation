@@ -16,8 +16,8 @@ export const select = {
 }
 
 export const types = {
-  FETCH_SECTIONS: 'FETCH_SECTIONS',
-  SET_SECTIONS: 'SET_SECTIONS',
+  FETCHAPI_SECTIONS: 'FETCHAPI_SECTIONS',
+  SETAPI_SECTIONS: 'SETAPI_SECTIONS',
   SET_MIN_SECTION_YEAR: 'SET_MIN_SECTION_YEAR',
   SET_MAX_SECTION_YEAR: 'SET_MAX_SECTION_YEAR'
 }
@@ -27,12 +27,12 @@ const createSectionsActionCreators = createActionCreator(types)
 export const actions = {
 
   fetchSection: createSectionsActionCreators(
-    types.FETCH_SECTIONS,
+    types.FETCHAPI_SECTIONS,
     payload => `/search?q=${encodeURI(payload)}&`
   ),
 
   setSection: createSectionsActionCreators(
-    types.SET_SECTIONS,
+    types.SETAPI_SECTIONS,
     payload => payload.response.results
   ),
 
@@ -43,7 +43,7 @@ export const actions = {
 
 export default function sectionsReducer (state = initialState(), {payload, type}) {
   switch (type) {
-    case types.SET_SECTIONS:
+    case types.SETAPI_SECTIONS:
     case types.SET_MIN_SECTION_YEAR:
     case types.SET_MAX_SECTION_YEAR:
       return {

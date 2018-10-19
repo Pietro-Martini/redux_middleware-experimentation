@@ -1,31 +1,32 @@
+import createActionCreator from '../helpers/createActionCreator'
+
+const initialState = () => ({
+  loaderShown: false
+})
+
 export const types = {
-  SET_LOADER: 'SET_LOADER'
+  SET_LOADER_SHOWN: 'SET_LOADER_SHOWN'
 }
+
+const createUIActionCreator = createActionCreator(types)
 
 export const actions = {
 
-  setLoader: shown => ({
-  	type: types.SET_LOADER,
-    payload: shown
-  })
+  setLoaderShown: createUIActionCreator(types.SET_LOADER_SHOWN)
 
 }
 
-export default function uiReducer (state = {
-  loaderShown: false
-}, action) {
+export default function uiReducer (state = initialState(), action) {
   const {payload, type} = action
 
   switch (type) {
-    case types.SET_LOADER:
+    case types.SET_LOADER_SHOWN:
       return {
         ...state,
-        loaderShown: payload
+        ...payload
       }
       break
     default:
-      return {
-        ...state
-      }
+      return state
   }
 }
