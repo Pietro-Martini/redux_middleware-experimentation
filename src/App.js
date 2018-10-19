@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Error from './components/Error'
 import Loader from './components/Loader'
 import SearchFormContainer from './containers/SearchFormContainer'
+import FilterFormContainer from './containers/FilterFormContainer'
 import SectionsContainer from './containers/SectionsContainer'
 
 const mapState = state => {	
@@ -26,6 +27,7 @@ class App extends React.Component {
   render = () => (
   	<div className='app'>
 		<SearchFormContainer />
+		<FilterFormContainer />
 		<SectionsContainer />    		    	
 		<Error error={this.props.error} />
 		<Loader loaderShown={this.props.loaderShown}/>
