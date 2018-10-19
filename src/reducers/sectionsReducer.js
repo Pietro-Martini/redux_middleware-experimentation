@@ -3,8 +3,8 @@ import createActionCreator from '../helpers/createActionCreator'
 
 const initialState = () => ({
   sections: [],
-  minSectionYear: null,
-  maxSectionYear: null
+  minSectionYear: 2000,
+  maxSectionYear: 2018
 })
 
 export const select = {
