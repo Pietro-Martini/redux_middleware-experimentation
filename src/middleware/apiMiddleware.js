@@ -5,11 +5,11 @@ const apiMiddleware = ({dispatch}) => next => action => {
     return next(action)
   }
 
-  const {url, body, successAction, method} = action.meta
+  const {url, body, successFn, method} = action.meta
 
   fetch(url, {method})
     .then(res => res.json())
-    .then(res => dispatch(successAction(res)))
+    .then(res => successFn(res))
     .catch(err => console.log(err))
 }
 

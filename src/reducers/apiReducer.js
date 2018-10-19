@@ -4,13 +4,13 @@ export const types = {
 
 export const actions = {
 
-  apiRequest: ({body, method, url, successAction}) => {
+  apiRequest: ({body, method, url, successFn}) => {
     return {
       type: types.API_REQUEST,
       meta: {
         body,
         url,
-        successAction,
+        successFn,
         method
       }
     }
