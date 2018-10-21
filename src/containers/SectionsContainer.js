@@ -9,16 +9,17 @@ import getDateElsFromTimestamp from '../helpers/getDateElsFromTimestamp'
 import compose from '../helpers/compose'
 
 const mapState = state => {
-  const filterSectionsMinYearSet = select.filterSectionsByMinYear(state.filter.minYear)
-  const filterSectionsTermSet = select.filterSectionsByTerm(state.filter.term)
+  const {minYear, term} = state.filter
+  const {sections} = state.sections
 
-  const applyFilterFns = compose(
-    filterSectionsMinYearSet,
-    filterSectionsTermSet
-  )
+  const filterSectionsMinYearSet = select.filterSectionsByMinYear(minYear)
+  const filterSectionsTermSet = select.filterSectionsByTerm(term)
 
   return {
-  	sections: applyFilterFns(state.sections.sections)
+  	sections: compose(
+      filterSectionsMinYearSet,
+      filterSectionsTermSet
+    )(sections)
   }
 }
 
