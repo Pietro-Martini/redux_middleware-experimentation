@@ -6,6 +6,7 @@ import {actions} from '../reducers/sectionsReducer'
 import {select} from '../reducers/filterReducer'
 
 import getDateElsFromTimestamp from '../helpers/getDateElsFromTimestamp'
+import stripNonAlphaNumericChars from '../helpers/stripNonAlphaNumericChars'
 import compose from '../helpers/compose'
 
 const mapState = state => {
@@ -19,11 +20,7 @@ const mapState = state => {
     const xTitle = x.webTitle
     const yTitle = y.webTitle
 
-    const [alphaNumOnlyTitleX, alphaNumOnlyTitleY] = [xTitle, yTitle].map(
-      title => title.replace(/\W/g, '')
-    )
-
-    // add a transform function to remove non-alphanumeric chars
+    const [alphaNumOnlyTitleX, alphaNumOnlyTitleY] = [xTitle, yTitle].map(stripNonAlphaNumericChars)
 
     return alphaNumOnlyTitleX.localeCompare(alphaNumOnlyTitleY)
   })
