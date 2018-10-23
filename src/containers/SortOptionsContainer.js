@@ -4,7 +4,6 @@ import SortOptions from '../components/SortOptions'
 import {actions} from '../reducers/filterReducer'
 
 const mapState = state => {
-  console.log(state)
   return {
   	sortByTermVal: state.filter.sortSectionsAscDesc,
   	sectionsInState: state.sections.sections.length > 0

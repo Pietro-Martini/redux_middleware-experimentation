@@ -1,17 +1,21 @@
 import React from 'react'
 import PaginationContainer from '../containers/PaginationContainer'
 
-export default function Sections ({sections}) {
+export default function Sections ({sections, addBookmarkedSection}) {
+  console.log(sections)
   return sections.length
     ? (
       <div className='sections'>
         <ul>
-          {sections.map(({webTitle, webUrl, webPublicationDate}) => (
+          {sections.map(({id, webTitle, webUrl, webPublicationDate}) => (
             <li>
               <h1>
                 <a href={webUrl}>{webTitle}</a>
               </h1>
               <h3>{webPublicationDate}</h3>
+              <p onClick={
+                () => addBookmarkedSection({id, webTitle, webUrl})
+              }>Add to Favorites</p>
             </li>
           ))}
         </ul>

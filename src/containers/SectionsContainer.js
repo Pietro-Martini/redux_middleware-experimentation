@@ -1,11 +1,10 @@
 import {connect} from 'react-redux'
 import Sections from '../components/Sections'
 
-import {actions} from '../reducers/sectionsReducer'
+import {actions as bookmarkedActions} from '../reducers/bookmarkedReducer'
 
 import {select} from '../reducers/filterReducer'
 
-import getDateElsFromTimestamp from '../helpers/getDateElsFromTimestamp'
 import stripNonAlphaNumericChars from '../helpers/stripNonAlphaNumericChars'
 import compose from '../helpers/compose'
 
@@ -34,6 +33,14 @@ const mapState = state => {
   }
 }
 
+const mapDispatch = dispatch => {
+  return {
+    addBookmarkedSection: sectionProps => {
+      dispatch(bookmarkedActions.addBookmarkedSection(sectionProps))
+    }
+  }
+}
+
 export default connect(
-  mapState
+  mapState, mapDispatch
 )(Sections)
