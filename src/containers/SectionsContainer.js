@@ -9,16 +9,26 @@ import getDateElsFromTimestamp from '../helpers/getDateElsFromTimestamp'
 import compose from '../helpers/compose'
 
 const mapState = state => {
-  const {minYear, term} = state.filter
+  const {minYear, term, sortSectionsAscDesc} = state.filter
   const {sections} = state.sections
 
   const filterSectionsMinYearSet = select.filterSectionsByMinYear(minYear)
   const filterSectionsTermSet = select.filterSectionsByTerm(term)
 
+  const sortSectionsAscDescSet = select.sortSectionsAscDesc(sortSectionsAscDesc, (x, y) => {
+    const xTitle = x.webTitle
+    const yTitle = y.webTitle
+
+    // add a transform function to remove non-alphanumeric chars
+
+    return xTitle.localeCompare(yTitle)
+  })
+
   return {
-  	sections: compose(
+    sections: compose(
       filterSectionsMinYearSet,
-      filterSectionsTermSet
+      filterSectionsTermSet,
+      sortSectionsAscDescSet
     )(sections)
   }
 }
