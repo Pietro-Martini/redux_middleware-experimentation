@@ -6,6 +6,7 @@ import SearchFormContainer from './containers/SearchFormContainer'
 import FilterFormContainer from './containers/FilterFormContainer'
 import SectionsContainer from './containers/SectionsContainer'
 import SortOptionsContainer from './containers/SortOptionsContainer'
+import BookmarkedSectionsContainer from './containers/BookmarkedSectionsContainer'
 
 const mapState = state => {	
 	return {  	
@@ -30,7 +31,8 @@ class App extends React.Component {
 		<SearchFormContainer />
 		<FilterFormContainer />
 		<SectionsContainer />
-		<SortOptionsContainer />		    	
+		<SortOptionsContainer />
+		<BookmarkedSectionsContainer />		    	
 		<Error error={this.props.error} />
 		<Loader loaderShown={this.props.loaderShown}/>
 	</div>
