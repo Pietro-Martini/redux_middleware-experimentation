@@ -8,17 +8,20 @@ import range from '../helpers/range'
 const mapState = state => {
   const {sections, minSectionYear, maxSectionYear} = state.sections
 
+  const yearFilter = state.filter.minYear
+
   return {
-  	sectionPublicationYearRange: range(minSectionYear, maxSectionYear),
-  	sectionsInState: sections.length > 0
+    yearFilter,
+    sectionPublicationYearRange: range(minSectionYear, maxSectionYear),
+    sectionsInState: sections.length > 0
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-  	setMinYear: year => {
-  		dispatch(actions.setMinYear(year))
-  	}
+    setMinYear: year => {
+      dispatch(actions.setMinYear(year))
+    }
   }
 }
 
