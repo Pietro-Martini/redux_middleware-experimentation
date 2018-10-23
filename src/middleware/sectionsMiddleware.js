@@ -34,8 +34,6 @@ const sectionsMiddleware = ({dispatch, getState}) => next => action => {
           const minSectionYear = Math.min(...sectionYears)
           const maxSectionYear = Math.max(...sectionYears)
 
-          console.log(minSectionYear)
-
           dispatch(filterActions.setMinYear(minSectionYear))
 
           dispatch(sectionActions.setMinSectionYear(minSectionYear))
