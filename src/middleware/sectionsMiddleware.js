@@ -17,10 +17,13 @@ const sectionsMiddleware = ({dispatch, getState}) => next => action => {
 
   switch (action.type) {
     case sectionTypes.FETCHAPI_SECTIONS:
-      const endpoint = action.payload.sections
+      const state = getState()
+
+      const searchTerm = action.payload.sectionSearchTerm || state.sections.sectionSearchTerm
+      const sectionPg = action.payload.sectionPg || state.pagination.currentPage
 
       dispatch(apiActions.apiRequest({
-        url: `${baseUrl}${endpoint}${apiKey}`,
+        url: `${baseUrl}/search?q=${encodeURI(searchTerm)}&api-key=${apiKey}&page=${sectionPg}`,
         method: 'GET',
         successFn: res => {
           dispatch(sectionActions.setSection(res))

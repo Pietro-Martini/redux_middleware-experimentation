@@ -1,16 +1,15 @@
 import React from 'react'
 
 export default class SearchForm extends React.Component {
-	state = {searchText: ''}
-
 	handleSubmit = e => {
 		e.preventDefault()
-		this.props.fetchSection(this.state.searchText)
+
+		const {fetchSection, sectionSearchTerm} = this.props
+
+		fetchSection(sectionSearchTerm)
 	}
 
-	handleChange = e => {		
-		this.setState({searchText: e.target.value})
-	}	
+	handleChange = e => this.props.setSectionSearchTerm(e.target.value)
 
 	render = () => {
 		return (
@@ -22,5 +21,5 @@ export default class SearchForm extends React.Component {
 	      </form>
 	    </div>
 	  )
-	}  
+	}
 }

@@ -4,14 +4,22 @@ import SearchForm from '../components/SearchForm'
 import {actions} from '../reducers/sectionsReducer'
 
 const mapState = state => {
-  return {}
+  return {
+    sectionSearchTerm: state.sections.sectionSearchTerm
+  }
 }
 
 const mapDispatch = dispatch => {
   return {
-  	fetchSection: sectionName => {
-  		dispatch(actions.fetchSection(sectionName))
-  	}
+
+  	fetchSection: (searchTerm, currentPage) => {
+  		dispatch(actions.fetchSection(searchTerm, currentPage))
+  	},
+
+    setSectionSearchTerm: searchTerm => {
+      dispatch(actions.setSectionSearchTerm(searchTerm))
+    }
+
   }
 }
 
