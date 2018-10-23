@@ -19,9 +19,13 @@ const mapState = state => {
     const xTitle = x.webTitle
     const yTitle = y.webTitle
 
+    const [alphaNumOnlyTitleX, alphaNumOnlyTitleY] = [xTitle, yTitle].map(
+      title => title.replace(/\W/g, '')
+    )
+
     // add a transform function to remove non-alphanumeric chars
 
-    return xTitle.localeCompare(yTitle)
+    return alphaNumOnlyTitleX.localeCompare(alphaNumOnlyTitleY)
   })
 
   return {
