@@ -1,11 +1,18 @@
 import React from 'react'
 
-export default function SectionPublicationYearFilter (props) {
-  return props.sectionsInState && (
-  	<select onChange={e => props.setMinYear(parseInt(e.target.value))}>
-      {props.sectionPublicationYearRange.map(y => (
+const SectionPublicationYearFilter = ({
+  yearFilter,
+  sectionPublicationYearRange,
+  sectionsInState,
+  setMinYear
+}) => (
+  sectionsInState && (
+  	<select value={yearFilter} onChange={e => setMinYear(e.target.value)}>
+      {sectionPublicationYearRange.map(y => (
         <option value={y}>{y}</option>
       ))}
     </select>
   )
-}
+)
+
+export default SectionPublicationYearFilter
