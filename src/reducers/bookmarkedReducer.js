@@ -23,10 +23,6 @@ export const actions = {
 export default function bookmarkedReducer (state = initialState(), {payload, type}) {
   switch (type) {
     case types.SET_BOOKMARKED_SECTIONS:
-    	console.log({
-        ...state,
-        ...payload
-      })
       return {
         ...state,
         ...payload

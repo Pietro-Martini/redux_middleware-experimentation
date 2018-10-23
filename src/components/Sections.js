@@ -2,7 +2,6 @@ import React from 'react'
 import PaginationContainer from '../containers/PaginationContainer'
 
 export default function Sections ({sections, addBookmarkedSection}) {
-  console.log(sections)
   return sections.length
     ? (
       <div className='sections'>
