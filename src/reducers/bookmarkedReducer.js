@@ -1,4 +1,5 @@
 import createActionCreator from '../helpers/createActionCreator'
+import createReducer from '../helpers/createReducer'
 
 const initialState = () => ({
   bookmarkedSections: []
@@ -20,15 +21,4 @@ export const actions = {
 
 }
 
-export default function bookmarkedReducer (state = initialState(), {payload, type}) {
-  switch (type) {
-    case types.SET_BOOKMARKED_SECTIONS:
-      return {
-        ...state,
-        ...payload
-      }
-      break
-    default:
-      return state
-  }
-}
+export default createReducer(types, initialState())

@@ -1,4 +1,5 @@
 import createActionCreator from '../helpers/createActionCreator'
+import createReducer from '../helpers/createReducer'
 
 const initialState = () => ({
   loaderShown: false
@@ -16,17 +17,4 @@ export const actions = {
 
 }
 
-export default function uiReducer (state = initialState(), action) {
-  const {payload, type} = action
-
-  switch (type) {
-    case types.SET_LOADER_SHOWN:
-      return {
-        ...state,
-        ...payload
-      }
-      break
-    default:
-      return state
-  }
-}
+export default createReducer(types, initialState())

@@ -1,5 +1,6 @@
 import getDateElsFromTimestamp from '../helpers/getDateElsFromTimestamp'
 import createActionCreator from '../helpers/createActionCreator'
+import createReducer from '../helpers/createReducer'
 
 const initialState = () => ({
   sectionSearchTerm: '',
@@ -49,18 +50,4 @@ export const actions = {
 
 }
 
-export default function sectionsReducer (state = initialState(), {payload, type}) {
-  switch (type) {
-    case types.SETAPI_SECTIONS:
-    case types.SET_SECTION_SEARCH_TERM:
-    case types.SET_MIN_SECTION_YEAR:
-    case types.SET_MAX_SECTION_YEAR:
-      return {
-        ...state,
-        ...payload
-      }
-      break
-    default:
-      return state
-  }
-}
+export default createReducer(types, initialState())

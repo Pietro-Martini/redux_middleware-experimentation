@@ -1,6 +1,7 @@
 import createActionCreator from '../helpers/createActionCreator'
 import getDateElsFromTimestamp from '../helpers/getDateElsFromTimestamp'
 import includes from '../helpers/includes'
+import createReducer from '../helpers/createReducer'
 
 const initialState = () => ({
   minYear: 2000,
@@ -42,17 +43,4 @@ export const actions = {
   setSortSectionsAscDesc: createFilterActionCreator(types.SET_SORT_SECTIONS_ASC_DESC)
 }
 
-export default function filterReducer (state = initialState(), {payload, type}) {
-  switch (type) {
-    case types.SET_MIN_YEAR:
-    case types.SET_TERM:
-    case types.SET_SORT_SECTIONS_ASC_DESC:
-      return {
-        ...state,
-        ...payload
-      }
-      break
-    default:
-      return state
-  }
-}
+export default createReducer(types, initialState())
