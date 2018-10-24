@@ -1,18 +1,25 @@
 import React from 'react'
 
-const BookmarkedSections = ({bookmarkedSectionsInState, bookmarkedSections}) => {
-  return bookmarkedSectionsInState && (
-  	<div className='bookmarked-sections'>
+class BookmarkedSections extends React.Component {
+  componentDidMount = this.props.retrieveCachedBookmarkedSections
+
+  render = () => {
+    return this.props.bookmarkedSectionsInState && (
+    <div className='bookmarked-sections'>
       <h1>Bookmarked Sections</h1>
       <ul className='bookmarked-sections'>
-      {bookmarkedSections.map(({webTitle, webUrl}) => (
+        {this.props.bookmarkedSections.map(({id, webTitle, webUrl}) => (
           <li className='bookmarked-section'>
-          <a href={webUrl}><h1>{webTitle}</h1></a>
-        </li>
-      	))}
-    </ul>
-  	</div>
+            <a href={webUrl}><h1>{webTitle}</h1></a>
+            <p onClick={e => this.props.deleteBookmarkedSection(id)}>
+              Remove from Saved Titles
+            </p>
+          </li>
+        ))}
+      </ul>
+    </div>
   )
+  }
 }
 
 export default BookmarkedSections
