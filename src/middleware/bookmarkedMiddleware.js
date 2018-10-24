@@ -9,17 +9,30 @@ const bookmarkedMiddleware = ({dispatch, getState}) => next => action => {
 
   const state = getState()
 
-  if (type === types.ADD_BOOKMARKED_SECTION) {
-  	const {bookmarkedSection} = payload
-  	const {bookmarkedSections} = state.bookmarked
+  const {bookmarkedSections} = state.bookmarked
 
-  	dispatch(actions.setBookmarkedSections(
-  		[...bookmarkedSections, bookmarkedSection]
-  	))
+  const updateBookmarkedSections = updatedBookmarkedSections => {
+    const bookmarkedSectionLocalStorageRepr = JSON.stringify(updatedBookmarkedSections)
+    localStorage.setItem('bookmarkedSections', bookmarkedSectionLocalStorageRepr)
+    dispatch(actions.setBookmarkedSections(updatedBookmarkedSections))
+  }
+
+  if (type === types.ADD_BOOKMARKED_SECTION) {
+    const {bookmarkedSection} = payload
+
+    const updatedBookmarkedSections = [...bookmarkedSections, bookmarkedSection]
+
+    updateBookmarkedSections(updatedBookmarkedSections)
   }
 
   if (type === types.DELETE_BOOKMARKED_SECTION) {
+    const bookmarkedSectionId = payload.bookmarkedSection
 
+    const updatedBookmarkedSections = bookmarkedSections.filter(
+      ({id}) => id !== bookmarkedSectionId
+    )
+
+    updateBookmarkedSections(updatedBookmarkedSections)
   }
 }
 
