@@ -29,21 +29,13 @@ const createSectionsActionCreators = createActionCreator(types)
 
 export const actions = {
 
-  fetchSection: (sectionSearchTerm, sectionPg) => {
+  fetchSection: () => {
     return {
-      type: types.FETCHAPI_SECTIONS,
-      payload: {
-        sectionSearchTerm,
-        sectionPg
-      }
+      type: types.FETCHAPI_SECTIONS
     }
   },
 
-  setSection: createSectionsActionCreators(
-    types.SETAPI_SECTIONS,
-    payload => payload.response.results
-  ),
-
+  setSection: createSectionsActionCreators(types.SETAPI_SECTIONS),
   setSectionSearchTerm: createSectionsActionCreators(types.SET_SECTION_SEARCH_TERM),
   setMinSectionYear: createSectionsActionCreators(types.SET_MIN_SECTION_YEAR),
   setMaxSectionYear: createSectionsActionCreators(types.SET_MAX_SECTION_YEAR)

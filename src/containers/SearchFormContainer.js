@@ -12,9 +12,9 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
 
-  	fetchSection: (searchTerm, currentPage) => {
-  		dispatch(actions.fetchSection(searchTerm, currentPage))
-  	},
+    fetchSection: () => {
+      dispatch(actions.fetchSection())
+    },
 
     setSectionSearchTerm: searchTerm => {
       dispatch(actions.setSectionSearchTerm(searchTerm))

@@ -2,31 +2,27 @@ import {
   actions as sectionActions,
   types as sectionTypes
 } from '../reducers/sectionsReducer'
-
 import {
   actions as filterActions
 } from '../reducers/filterReducer'
-
 import {select} from '../reducers/sectionsReducer'
-
 import {actions as apiActions} from '../reducers/apiReducer'
-import {baseUrl, apiKey} from '../constants/constants'
+import {actions as paginationActions} from '../reducers/paginationReducer'
+
+import selectUrl from '../selectors/selectUrl'
 
 const sectionsMiddleware = ({dispatch, getState}) => next => action => {
   next(action)
 
   switch (action.type) {
     case sectionTypes.FETCHAPI_SECTIONS:
-      const state = getState()
-
-      const searchTerm = action.payload.sectionSearchTerm || state.sections.sectionSearchTerm
-      const sectionPg = action.payload.sectionPg || state.pagination.currentPage
-
       dispatch(apiActions.apiRequest({
-        url: `${baseUrl}/search?q=${encodeURI(searchTerm)}&api-key=${apiKey}&page=${sectionPg}`,
+        url: selectUrl(getState()),
         method: 'GET',
         successFn: res => {
-          dispatch(sectionActions.setSection(res))
+          dispatch(sectionActions.setSection(res.response.results))
+
+          dispatch(paginationActions.setMaxPage(res.response.pages))
 
           const state = getState()
 
