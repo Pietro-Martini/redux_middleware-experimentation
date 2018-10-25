@@ -20,20 +20,19 @@ const sectionsMiddleware = ({dispatch, getState}) => next => action => {
         url: selectUrl(getState()),
         method: 'GET',
         successFn: res => {
-          dispatch(sectionActions.setSection(res.response.results))
+          const {results, pages} = res.response
 
-          dispatch(paginationActions.setMaxPage(res.response.pages))
+          dispatch(sectionActions.setSection(results))
 
-          const state = getState()
+          dispatch(paginationActions.setMaxPage(pages))
 
-          const sectionYears = select.selectYearsFromSections(state.sections.sections)
+          const sectionYears = select.selectYearsFromSections(results)
           const minSectionYear = Math.min(...sectionYears)
           const maxSectionYear = Math.max(...sectionYears)
 
           dispatch(filterActions.setMinYear(minSectionYear))
 
           dispatch(sectionActions.setMinSectionYear(minSectionYear))
-
           dispatch(sectionActions.setMaxSectionYear(maxSectionYear))
         }
       }))
