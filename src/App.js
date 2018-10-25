@@ -11,7 +11,8 @@ import BookmarkedSectionsContainer from './containers/BookmarkedSectionsContaine
 const mapState = state => {	
 	return {  	
   	error: state.error,
-  	loaderShown: state.ui.loaderShown,  	
+  	loaderShown: state.ui.loaderShown,
+  	sectionsInState: state.sections.sections.length > 0	
   }
 }
 
@@ -26,17 +27,37 @@ class App extends React.Component {
 		})
 	}
 
-  render = () => (
-  	<div className='app'>
-		<SearchFormContainer />
-		<FilterFormContainer />
-		<SectionsContainer />
-		<SortOptionsContainer />
-		<BookmarkedSectionsContainer />		    	
+	renderComponentsForTransformingSections = sectionsInState => {
+		return sectionsInState
+	  	? (
+	  	<React.Fragment>	  		
+			<FilterFormContainer />
+			<SortOptionsContainer />
+	  	</React.Fragment>  		
+	  	)
+	  	: null
+	}
+
+  render = () => {
+  	const {sectionsInState} = this.props
+
+  	const containersDependentOnSectionsInState = this.renderComponentsForTransformingSections(sectionsInState)
+
+  	return (
+	<div className='app'>
+		<div className='forms'>
+			<SearchFormContainer />
+			{containersDependentOnSectionsInState}
+		</div>
+		<div className='main'>
+			<SectionsContainer />
+			<BookmarkedSectionsContainer />
+		</div>			
 		<Error error={this.props.error} />
 		<Loader loaderShown={this.props.loaderShown}/>
 	</div>
-  )
+  	)
+  }
 }
 
 export default connect(

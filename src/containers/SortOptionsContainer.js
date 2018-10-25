@@ -5,8 +5,7 @@ import {actions} from '../reducers/filterReducer'
 
 const mapState = state => {
   return {
-  	sortByTermVal: state.filter.sortSectionsAscDesc,
-  	sectionsInState: state.sections.sections.length > 0
+  	sortByTermVal: state.filter.sortSectionsAscDesc
   }
 }
 
