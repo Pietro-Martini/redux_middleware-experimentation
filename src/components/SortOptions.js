@@ -3,7 +3,7 @@ import React from 'react'
 import sortOptions from '../options/sortOptions'
 
 export default function SortOptions (props) {
-  return props.sectionsInState && (
+  return (
     <div className='sort-options'>
       <h1>Sort Options</h1>
       <div className='sort-by-term'>

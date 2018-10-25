@@ -3,12 +3,12 @@ import React from 'react'
 import SectionPublicationYearFilterContainer from '../containers/SectionPublicationYearFilterContainer'
 import SectionTitleDescriptionFilterContainer from '../containers/SectionTitleDescriptionFilterContainer'
 
-export default function FilterForm (props) {
+export default function FilterForm ({sectionsInState}) {
   return (
-    <React.Fragment>
+    <div className='filter-form'>
       <h1>Filter Form</h1>
       <SectionPublicationYearFilterContainer />
       <SectionTitleDescriptionFilterContainer />
-    </React.Fragment>
+    </div>
   )
 }

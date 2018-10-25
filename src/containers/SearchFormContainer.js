@@ -3,12 +3,6 @@ import SearchForm from '../components/SearchForm'
 
 import {actions} from '../reducers/sectionsReducer'
 
-const mapState = state => {
-  return {
-    sectionSearchTerm: state.sections.sectionSearchTerm
-  }
-}
-
 const mapDispatch = dispatch => {
   return {
 
@@ -24,5 +18,5 @@ const mapDispatch = dispatch => {
 }
 
 export default connect(
-  mapState, mapDispatch
+  null, mapDispatch
 )(SearchForm)

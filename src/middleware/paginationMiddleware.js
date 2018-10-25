@@ -10,7 +10,7 @@ const paginationMiddleware = ({dispatch, getState}) => next => action => {
 
   if (action.type === types.SET_CURRENT_PAGE) {
     const {currentPage} = action.payload
-    dispatch(sectionActions.fetchSection(null, currentPage))
+    dispatch(sectionActions.fetchSection())
   }
 
   if (action.type === types.SET_RESULTS_PER_PAGE) {

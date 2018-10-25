@@ -3,10 +3,7 @@ import React from 'react'
 export default class SearchForm extends React.Component {
 	handleSubmit = e => {
 		e.preventDefault()
-
-		const {fetchSection, sectionSearchTerm} = this.props
-
-		fetchSection(sectionSearchTerm)
+		this.props.fetchSection()
 	}
 
 	handleChange = e => this.props.setSectionSearchTerm(e.target.value)
@@ -16,8 +13,8 @@ export default class SearchForm extends React.Component {
 	    <div className='search-form'>
 	      <h1>Search Form</h1>
 	      <form onSubmit={this.handleSubmit}>
-	      <input type='text' onChange={this.handleChange} />
-	      <input type='submit' value='Submit' />
+		      <input type='text' onChange={this.handleChange} />
+		      <input type='submit' value='Submit' />
 	      </form>
 	    </div>
 	  )

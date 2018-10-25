@@ -6,14 +6,13 @@ import {actions} from '../reducers/filterReducer'
 import range from '../helpers/range'
 
 const mapState = state => {
-  const {sections, minSectionYear, maxSectionYear} = state.sections
+  const {minSectionYear, maxSectionYear} = state.sections
 
   const yearFilter = state.filter.minYear
 
   return {
     yearFilter,
-    sectionPublicationYearRange: range(minSectionYear, maxSectionYear),
-    sectionsInState: sections.length > 0
+    sectionPublicationYearRange: range(minSectionYear, maxSectionYear)
   }
 }
 
