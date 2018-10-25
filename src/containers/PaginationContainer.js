@@ -6,9 +6,7 @@ import {actions as sectionsActions} from '../reducers/sectionsReducer'
 import range from '../helpers/range'
 
 const mapState = state => {
-  const numGreaterThanZero = num => num > 0
-
-  const {currentPage} = state.pagination
+  const {currentPage, maxPage} = state.pagination
 
   const PAGINATION_OFFSET = 5
 
@@ -22,14 +20,14 @@ const mapState = state => {
 
   return {
     currentPage,
-    prevPages: range(prevPageStart, prevPageEnd, numGreaterThanZero),
-    nextPages: range(nextPageStart, nextPageEnd),
-    showPrevArrow: numGreaterThanZero(currentPage - 1)
+    prevPages: range(prevPageStart, prevPageEnd, n => n > 0),
+    nextPages: range(nextPageStart, nextPageEnd, n => n <= maxPage),
+    showPrevArrow: currentPage > 1,
+    showNextArrow: currentPage < maxPage
   }
 }
 
 const mapDispatch = dispatch => {
-
   const handleArrowClick = incrementAmt => currentPage => {
     const updatedPage = currentPage + incrementAmt
     dispatch(paginationActions.setCurrentPage(updatedPage))

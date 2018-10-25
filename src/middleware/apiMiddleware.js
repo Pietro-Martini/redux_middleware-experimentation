@@ -9,7 +9,7 @@ const apiMiddleware = ({dispatch}) => next => action => {
 
   fetch(url, {method})
     .then(res => res.json())
-    .then(res => successFn(res))
+    .then(successFn)
     .catch(err => console.log(err))
 }
 
